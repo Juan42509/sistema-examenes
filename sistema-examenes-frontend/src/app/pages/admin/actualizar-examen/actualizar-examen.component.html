@@ -1,0 +1,44 @@
+<mat-card>
+    <h1>Actualizar Examen</h1>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <form *ngIf="examen" (submit)="actualizarExamen()">
+          <mat-form-field class="w100" appearance="fill">
+            <mat-label>Titulo</mat-label>
+            <input matInput [(ngModel)]="examen.titulo" type="text" name="titulo" placeholder="Digite el titulo" required>
+          </mat-form-field>
+          <mat-form-field class="w100" appearance="fill">
+            <mat-label>Descripcion</mat-label>
+            <textarea matInput [(ngModel)]="examen.descripcion" name="descripcion" placeholder="Digite la descripcion" rows="8"></textarea>
+          </mat-form-field>
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field class="w100" appearance="fill">
+                <mat-label>Puntos maximos</mat-label>
+                <input [(ngModel)]="examen.puntosMaximos" type="number" name="puntosMaximos" placeholder="Digite la cantidad de puntos" matInput>
+              </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="w100" appearance="fill">
+                  <mat-label>Numero de preguntas</mat-label>
+                  <input [(ngModel)]="examen.numeroDePreguntas" type="number" name="numeroDePreguntas" placeholder="Digite el numero de preguntas" matInput>
+                </mat-form-field>
+              </div>
+            </div>
+            <mat-form-field appearance="fill" class="mt20 w100">
+              <mat-label>Categorias</mat-label>
+              <mat-select name="categoria" [(ngModel)]="examen.categoria.categoriaId">
+                  <mat-option *ngFor="let c of categorias" [value]="c.categoriaId">
+                      {{c.titulo}}
+                  </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-slide-toggle class="mt20" name="activo" [(ngModel)]="examen.activo" color="primary">Estado de publicacion</mat-slide-toggle>
+            <div class="conteiner text-center">
+              <button mat-raised-button color="primary">Guardar</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </mat-card>
+  <!-- {{examenData | json}} -->
